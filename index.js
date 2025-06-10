@@ -1,10 +1,10 @@
-//limpa o formulario
+//clear the form
 function clearForm() {
     const container = document.getElementById('form');
     container.innerHTML = ''; // Remove todos os elementos filhos
 }
 
-//cria o botão de submit
+//create the submit button
 function createSubmitButton(contentButton){
     const submitButton = document.createElement('button')
     submitButton.textContent = contentButton 
@@ -13,7 +13,7 @@ function createSubmitButton(contentButton){
     return submitButton
 }
 
-//novo formulario
+//new form
 function newForm(){
     //checks whether the selected option is already created
     if(document.querySelector('#newForm')) return
@@ -24,7 +24,7 @@ function newForm(){
     return newForm
 }
 
-//campos padrões do formulario
+//standard form fields
 function standardFormFields(){
     //name field
     const labelName = document.createElement('label')
@@ -69,7 +69,7 @@ function standardFormFields(){
     ]
 }
 
-//renderiza o formulario para criação de uma nova transação
+//renders the form to create a new transaction
 function renderNewTransactionForm(){
     //clean the container
     clearForm()
@@ -94,11 +94,11 @@ function renderNewTransactionForm(){
 
 }
 
-//evento para adicionar formulario de nova transação
+//event to add new transaction form
 const newTransaction = document.querySelector('#newTransaction')
 newTransaction.addEventListener('click', renderNewTransactionForm)
 
-//campos ID do formulario
+//form ID fields
 function idFields(){
     const labelId = document.createElement('label')
     labelId.setAttribute('for', 'transaction-id')
@@ -110,7 +110,7 @@ function idFields(){
     return [labelId, inputId]
 }
 
-//renderiza o formulario para editar uma transação
+//renders the form to edit a transaction
 function renderEditTransactionForm(){
     clearForm()
 
@@ -133,12 +133,12 @@ function renderEditTransactionForm(){
     document.querySelector('#form').append(newFormElement)
 }
 
-//evento para adicionar formulario de editar uma transação
+//event to add a transaction edit form
 const editTransaction = document.querySelector('#editTransaction')
 editTransaction.addEventListener('click', renderEditTransactionForm)
 
 
-//renderiza o formulario para deletar uma transação
+//renders the form to delete a transaction
 function renderDeleteTransactionForm(){
     clearForm()
 
@@ -160,12 +160,12 @@ function renderDeleteTransactionForm(){
 
     
 }
-//evento para adicionar formulario de deletar uma transação
+//event to add a form to delete a transaction
 const deleteTransaction = document.querySelector('#deleteTransaction')
 deleteTransaction.addEventListener('click', renderDeleteTransactionForm)
 
 
-//renderiza a nova transação criada na pagina 
+//renders the new transaction created on the page
 function renderTransactions(transactionData){
     //div transaction
     const transaction = document.createElement('div')
@@ -198,7 +198,7 @@ function renderTransactions(transactionData){
     document.querySelector('#transactions-list').append(transaction)
 }
 
-//busca as transações no banco de dados
+//search for transactions in the database
 async function fetchTransactions(){
     const transactions = await fetch('http://localhost:3000/transactions')
         .then(res => res.json())        
@@ -206,14 +206,14 @@ async function fetchTransactions(){
         transactions.forEach(renderTransactions)
 }
 
-//chama a função para buscar as transações assim que a pagina é carregada
+//call the function to fetch transactions as soon as the page is loaded
 document.addEventListener('DOMContentLoaded', () => {
     fetchTransactions()
 })
 
 
 
-//Metodo POST para enviar novas transações
+//POST method to send new transactions
 async function newTransactionHandler(){
     const value = parseFloat(document.querySelector('#transaction-value').value)
     if (isNaN(value) || value <= 0) {
@@ -242,7 +242,37 @@ async function newTransactionHandler(){
     renderTransactions(savedTransaction)
 }
 
-//chama a respectiva função para cada um dos submit
+//PUT method to edit transactions
+async function editTransactionHandler(id){
+    const value = parseFloat(document.querySelector('#transaction-value').value)
+    if (isNaN(value) || value <= 0) {
+        alert('Valor inválido!')
+        return
+    }
+
+    const transactionData = {
+        id: document.querySelector('#transaction-id').value,
+        name: document.querySelector('#transaction-name').value,
+        value: document.querySelector('#transaction-value').value,
+        type: document.querySelector('#transaction-type').value
+    }
+    
+    const response = await fetch(`http://localhost:3000/transactions/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transactionData)
+    })
+    
+   const savedTransaction = await response.json()
+
+    form.reset()
+
+    renderTransactions(savedTransaction)
+}
+
+//call the respective function for each of the submit
 function handleFormSubmit(ev) {
     ev.preventDefault()
 
@@ -252,7 +282,7 @@ function handleFormSubmit(ev) {
     if (action === 'newTransaction') {
         newTransactionHandler()
     } else if (action === 'editTransaction') {
-        editTransactionHandler()
+        editTransactionHandler(document.querySelector('#transaction-id').value)
     } else if (action === 'deleteTransaction') {
         deleteTransactionHandler()
     }
