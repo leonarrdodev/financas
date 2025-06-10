@@ -1,28 +1,3 @@
 {
-  "transactions": [
-    {
-      "id": "3695",
-      "name": "Salgado",
-      "value": "8",
-      "type": "Gasto"
-    },
-    {
-      "id": "4967",
-      "name": "tESTE",
-      "value": "128",
-      "type": "Ganho"
-    },
-    {
-      "id": "2323",
-      "name": "ifoof",
-      "value": "256",
-      "type": "Gasto"
-    },
-    {
-      "id": "315a",
-      "name": "jk",
-      "value": "67",
-      "type": "Ganho"
-    }
-  ]
+  "transactions": []
 }

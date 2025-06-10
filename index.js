@@ -272,6 +272,35 @@ async function editTransactionHandler(id){
     renderTransactions(savedTransaction)
 }
 
+//DELETE method to delete transactions
+async function deleteTransactionHandler(id) {
+    if (!id) {
+        alert('Informe um ID válido!');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/transactions/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert('Transação deletada com sucesso!');
+            const transactionElement = document.querySelector(`#transaction-${id}`);
+            if (transactionElement) transactionElement.remove();
+
+            form.reset();
+        } else {
+            alert('Erro ao deletar. Código: ' + response.status);
+            console.error('Erro ao deletar:', response.status);
+        }
+    } catch (error) {
+        alert('Erro na requisição de exclusão.');
+        console.error('Erro na requisição:', error);
+    }
+}
+
+
 //call the respective function for each of the submit
 function handleFormSubmit(ev) {
     ev.preventDefault()
@@ -284,7 +313,7 @@ function handleFormSubmit(ev) {
     } else if (action === 'editTransaction') {
         editTransactionHandler(document.querySelector('#transaction-id').value)
     } else if (action === 'deleteTransaction') {
-        deleteTransactionHandler()
+        deleteTransactionHandler(document.querySelector('#transaction-id').value)
     }
 }
 
