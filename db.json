@@ -1,0 +1,46 @@
+{
+  "transactions": [
+    {
+      "id": "3695",
+      "name": "Compra mensal",
+      "value": "1500",
+      "type": "Gasto"
+    },
+    {
+      "id": "1745",
+      "name": "fd",
+      "value": "54",
+      "type": "Ganho"
+    },
+    {
+      "id": "cdab",
+      "name": "54",
+      "value": "54",
+      "type": "Ganho"
+    },
+    {
+      "id": "4e50",
+      "name": "dsa",
+      "value": "3",
+      "type": "Ganho"
+    },
+    {
+      "id": "7776",
+      "name": "6",
+      "value": "6565",
+      "type": "Ganho"
+    },
+    {
+      "id": "e985",
+      "name": "6565",
+      "value": "6666",
+      "type": "Ganho"
+    },
+    {
+      "id": "8a5b",
+      "name": "ere",
+      "value": "3243",
+      "type": "Ganho"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+}
+
+main{
+    display: flex; 
+    gap: 4rem; 
+    margin: 1rem 2rem; 
+    width: 90vw; 
+    justify-content: space-around;
+}
+
+.container{
+    background-color: #f4f4f4;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    width: 450px;
+    height: 70vh;
+    overflow: auto;
+}
+
+#transactions-form{
+    display: flex;
+    gap: 0.6rem;
+    flex-direction: column;
+}
+
+#transactions-list{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column; 
+}
+
+.transaction{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+label, select{
+    display: block;
+     margin-top: 15px;
+}
+
+input, select{
+    margin-top: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 2.5rem;
+}
+
+button, .button-submit{
+    margin-top: 15px;
+    cursor: pointer;
+    padding: .3rem 2rem;
+    display: block;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+container-form{
+    display: flex;
+    flex-direction: column;
+}
+

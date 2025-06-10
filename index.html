@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minhas finanças</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <header class="bg-blue-600 text-white shadow-md py-6">
+        <h1 class="text-3xl font-bold text-center">Minhas finanças</h1>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+
+        <div class="container" id="navbar">
+            <nav>
+                <ul class="flex gap-4 justify-center mb-6">
+                    <li><button id="newTransaction" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Nova transação</button></li>
+                    <li><button class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition" id="editTransaction">Editar</button></li>
+                    <li><button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition" id="deleteTransaction">Deletar</button></li>
+                </ul>
+            </nav>
+        </div>
+
+        <form class="container conteiner-form bg-white rounded shadow p-6 mb-6 max-w-md mx-auto" id="form">
+            <!-- conteúdo dinâmico -->
+        </form>
+
+        <div id="transactions-list" class="container bg-white rounded shadow p-6 max-w-3xl mx-auto">
+            <h2 class="text-xl font-semibold mb-2">Saldo atual: R$ <span id="current-balance" class="text-green-600">0,00</span></h2>
+            <h2 class="text-xl font-semibold mb-4">Minhas transações:</h2>
+            <!-- transações aqui -->
+        </div>
+
+    </main>
+    <script src="./index.js"></script>
+</body>
+</html>
